@@ -25,4 +25,4 @@ function fetch_versions() {
 # old_tags=$(fetch_versions "https://api.github.com/repos/junegunn/fzf-bin/releases")
 # new_tags=$(fetch_versions "https://api.github.com/repos/junegunn/fzf/releases")
 # all_tags=("${old_tags[@]}" "${new_tags[@]}")
-echo "latest"
+echo "42.0"
