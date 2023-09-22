@@ -22,7 +22,7 @@ function fetch_versions() {
 
 # We're purposefully sorting each list individually instead of the global list because one of the version
 # the old list is returning is "alpha" and we want that version to appear before the newer versions
-old_tags=$(fetch_versions "https://api.github.com/repos/junegunn/fzf-bin/releases")
-new_tags=$(fetch_versions "https://api.github.com/repos/junegunn/fzf/releases")
-all_tags=("${old_tags[@]}" "${new_tags[@]}")
-echo "${all_tags[@]}"
+# old_tags=$(fetch_versions "https://api.github.com/repos/junegunn/fzf-bin/releases")
+# new_tags=$(fetch_versions "https://api.github.com/repos/junegunn/fzf/releases")
+# all_tags=("${old_tags[@]}" "${new_tags[@]}")
+echo "latest"
