@@ -1,38 +1,37 @@
 #!/usr/bin/env sh
 
 set -e
-set -o pipefail
 
 fail() {
-    echo -e "\e[31mFail:\e[m $*"
-    exit 1
+	echo -e "\e[31mFail:\e[m $*"
+	exit 1
 }
 install_deploy1() {
-    local install_type=$1
-    local version=$2
-    local install_path=$3
-    local old_dir=$(pwd)
+	local install_type=$1
+	local version=$2
+	local install_path=$3
+	local old_dir=$(pwd)
 
-    if [ "$install_type" != "version" ]; then
-        fail "asdf-deploy1 supports release installs only"
-    fi
+	if [ "$install_type" != "version" ]; then
+		fail "asdf-deploy1 supports release installs only"
+	fi
 
-    (
-        echo "∗ Downloading and installing deploy1..."
-        git clone git@bitbucket.org:elevenlab/deploy1.git "$install_path"
-        cd "$install_path"
-        go build
-        mkdir bin
-        mv deploy1 bin/deploy1
-        echo ""
-        echo "The installation was successful!"
-        echo ""
-        echo "If you'd like to generate configuration files, "
-        echo "Launch '${install_path}/install' ."
-        ) || (
-        rm -rf "$install_path"
-        fail "An error occurred"
-    )
+	(
+		echo "∗ Downloading and installing deploy1..."
+		git clone git@bitbucket.org:elevenlab/deploy1.git "$install_path"
+		cd "$install_path"
+		go build
+		mkdir bin
+		mv deploy1 bin/deploy1
+		echo ""
+		echo "The installation was successful!"
+		echo ""
+		echo "If you'd like to generate configuration files, "
+		echo "Launch '${install_path}/install' ."
+	) || (
+		rm -rf "$install_path"
+		fail "An error occurred"
+	)
 }
 
 install_deploy1 "$ASDF_INSTALL_TYPE" "$ASDF_INSTALL_VERSION" "$ASDF_INSTALL_PATH"
